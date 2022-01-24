@@ -411,13 +411,14 @@
 																			class="custom-control custom-switch toggle-switch text-left mr-4 mb-2">
 																			<input type="checkbox"
 																				class="custom-control-input"
-																				id="customSwitchOfertas">
+																				id="customSwitchOfertas"
+																				onclick="showNhide()">
 																			<label class="custom-control-label"
 																				for="customSwitchOfertas"></label>
 																		</div>
 
 																	</div>
-																	<div class="col-md-12">
+																	<div id="ofertasSection" style="display: none;" class="col-md-12">
 																		<h4 class="card-title">OFERTAS</h4>
 
 
@@ -470,28 +471,35 @@
 																							data-dismiss="modal"><span>&times;</span>
 																						</button>
 																					</div>
-																					<div class="modal-body">
+																					<div id="form" class="modal-body">
 
 																						<label for="example-text-input"
-																							class="mt-0 header-title">Nome
+																							class="mt-0 header-title modal-field">Nome
 																							do plano</label>
 																						<input class="form-control"
 																							type="text" value=""
-																							id="example-text-input"
-																							style="margin-bottom: 10px;">
+																							id="nomeDoPlano"
+																							data-index="new"
+																							style="margin-bottom: 10px;"
+																							required>
 
 																						<label for="example-text-input"
-																							class="mt-0 header-title">Valor
+																							class="mt-0 header-title modal-field">Valor
 																							do plano</label>
 																						<input class="form-control"
 																							type="text" value=""
-																							id="example-text-input"
-																							style="margin-bottom: 10px;">
+																							id="valorDoPlano"
+																							data-index="new"
+																							style="margin-bottom: 10px;"
+																							required>
 
 																						<label for="example-text-input"
 																							class="mt-0 header-title">Frequência</label>
-																						<select class="form-control"
-																							style="width: 300px; margin-bottom: 10px;">
+																						<select class="form-control modal-field"
+																							style="width: 300px; margin-bottom: 10px;"
+																							id="frequencia"
+																							data-index="new"
+																							required>
 																							<option>Selecione</option>
 																							<option>Semanal</option>
 																							<option>Mensal</option>
@@ -507,11 +515,12 @@
 																						<div class="col-sm-9">
 																							<div class="form-check">
 																								<input
-																									class="form-check-input"
+																									class="form-check-input modal-field"
 																									type="radio"
 																									name="gridRadios"
 																									value="option1"
-																									checked>
+																									checked
+																									required>
 																								<label
 																									class="form-check-label">
 																									Até o cliente
@@ -520,7 +529,7 @@
 																							</div>
 																							<div class="form-check">
 																								<input
-																									class="form-check-input"
+																									class="form-check-input modal-field"
 																									type="radio"
 																									name="gridRadios"
 																									value="option2">
@@ -535,10 +544,11 @@
 																								<label
 																									class="form-check-label">
 																									<input
-																										class="form-control"
-																										type="text"
+																										class="form-control modal-field"
+																										type="date"
 																										value=""
-																										id="example-text-input"
+																										id="vencimento"
+																										data-index="new"
 																										style="margin-bottom: 10px;">
 																								</label>
 																							</div>
@@ -547,10 +557,13 @@
 																					</div>
 																					<div class="modal-footer">
 																						<button type="button"
+																							id="cancel"
 																							class="btn btn-danger light"
 																							data-dismiss="modal">Cancelar</button>
 																						<button type="button"
-																							class="btn btn-primary">Adicionar
+																							id="save"
+																							class="btn btn-primary"
+																							data-dismiss="modal">Adicionar
 																							plano</button>
 																					</div>
 																				</div>
@@ -559,7 +572,7 @@
 																	</div>
 																	<div class="card-body">
 																		<div class="table-responsive">
-																			<table class="table table-responsive-md">
+																			<table id="tablePlano" class="table table-responsive-md">
 																				<thead>
 																					<tr>
 																						<th>PLANO</th>
@@ -616,10 +629,13 @@
 																								</button>
 																								<div
 																									class="dropdown-menu">
-																									<a class="dropdown-item"
-																										href="#">Editar</a>
-																									<a class="dropdown-item"
-																										href="#">Excluir</a>
+																									<button class="dropdown-item"
+																										type="button"
+																										id="edit"
+																										>Editar</button >
+																									<button class="dropdown-item"
+																										type="button"
+																										id="delete">Excluir</button >
 																								</div>
 																							</div>
 																						</td>
@@ -2965,6 +2981,8 @@
 	<!--**********************************
         Scripts
     ***********************************-->
+	<script src="./js/CRUD.js"></script>
+
 	<!-- Required vendors -->
 	<script src="./vendor/global/global.min.js"></script>
 	<script src="./vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
@@ -3084,6 +3102,19 @@
 		});
 	</script>
 
+	<!-- Hide and Show Ofertas Event -->
+	<script>
+		function showNhide() {
+    		const x = document.getElementById('ofertasSection')
+
+    		if (x.style.display === 'none') {
+        		x.style.display = 'block'
+    		} else {
+        		x.style.display = 'none'
+        
+    		}
+		}
+	</script>
 
 </body>
 
